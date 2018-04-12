@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn run test
+  /usr/local/bin/node /usr/local/bin/yarn test -- -u
 
 PATH: 
   /Users/jhosehprendon/.rbenv/bin:/Users/jhosehprendon/.rbenv/shims:/Users/jhosehprendon/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -6717,7 +6717,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c jest --config=jest.config.json
+  Arguments: -c jest --config=jest.config.json -u
   Directory: /Users/jhosehprendon/Desktop/expensify-app
   Output:
   
