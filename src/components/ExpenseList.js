@@ -4,7 +4,12 @@ import ExpenseListItem from './ExpenseListItem';
 import selectExpenses from '../selectors/expenses';
 
 export const ExpenseList = (props) => (
-    <div>
+    <div classname="content-container">
+        <div>
+            <div>Expenses</div>
+            <div>Expense</div>
+            <div>Amount</div>
+        </div>
         {
             props.expenses.length === 0 ? (
                 <p>No expenses</p>
