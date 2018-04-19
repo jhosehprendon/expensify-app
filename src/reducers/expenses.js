@@ -16,7 +16,8 @@ const expensesReducer = (state = expensesReducerDefaultState, action) => {
                 if(expense.id === action.id) {
                     return {
                         ...expense,
-                        ...action.updates
+                        ...action.updates,
+                        selectedRemove
                     };
                 } else {
                     return expense;

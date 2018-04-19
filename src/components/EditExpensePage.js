@@ -2,16 +2,31 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ExpenseForm from './ExpenseForm';
-import { startEditExpense, startRemoveExpense } from '../actions/expenses'
+import { startEditExpense, startRemoveExpense } from '../actions/expenses';
+import RemoveModal from './RemoveModal';
 
 export class EditExpensePage extends React.Component {
+
     onSubmit = (expense)=>{
         this.props.startEditExpense(this.props.expense.id, expense);
         this.props.history.push('/');
     };
     onRemove = ()=>{
         this.props.startRemoveExpense({ id: this.props.expense.id });
+        this.setState(() => ({
+            selectedRemove: false
+        }));
         this.props.history.push('/');
+    };
+    onCloseModal = ()=>{
+        this.setState(() => ({
+            selectedRemove: false
+        }));
+    };
+    onAskRemove = () => {
+        this.setState(() => ({
+            selectedRemove: true
+        }));
     }
     render() {
         return (
@@ -29,8 +44,14 @@ export class EditExpensePage extends React.Component {
                         expense={this.props.expense}
                         onSubmit={this.onSubmit}
                     />
-                    <button className="button button--secondary" onClick={this.onRemove}>Remove Expense</button>
+                    <button className="button button--secondary" onClick={this.onAskRemove}>Remove Expense</button>
                 </div>
+
+                <RemoveModal 
+                    selectedRemove={this.state.selectedRemove}
+                    onRemove={this.onRemove}
+                    onCloseModal={this.onCloseModal}
+                />
                 
             </div>    
         );
@@ -39,6 +60,7 @@ export class EditExpensePage extends React.Component {
 
 const mapStateToProps = (state, props) => {
     return {
+        selectedRemove: state.selectedRemove,
         expense: state.expenses.find((expense) => expense.id === props.match.params.id)
     };
 };

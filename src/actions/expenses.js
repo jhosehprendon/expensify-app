@@ -43,14 +43,16 @@ export const startRemoveExpense = ({ id } = {}) => {
 };
 
 // EDIT_EXPENSE Action creator
-export const editExpense = (id, updates) => ({
+export const editExpense = (id, updates, selectedRemove) => ({
     type: 'EDIT_EXPENSE',
     id,
-    updates
+    updates,
+    selectedRemove
 });
 
-export const startEditExpense = (id, updates) => {
+export const startEditExpense = (id, updates, selectedRemove) => {
     return (dispatch, getState) => {
+        selectedRemove = false;
         const uid = getState().auth.uid;
         return database.ref(`users/${uid}/expenses/${id}`).update(updates).then(() => {
             dispatch(editExpense(id, updates));
