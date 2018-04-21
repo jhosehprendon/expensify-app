@@ -3,10 +3,11 @@ import Modal from 'react-modal';
 
 const RemoveModal = (props) => (
     <Modal
-        isOpen={props.selectedRemove}
+        isOpen={props.confirmRemove}
         contentLabel='Selected Option'
         closeTimeoutMS={200}
         className='modal'
+        ariaHideApp={false}
     >
         <h3>Are you sure you want to remove this expense?</h3>
         <button 
@@ -21,3 +22,5 @@ const RemoveModal = (props) => (
 );
 
 export default RemoveModal;
+
+

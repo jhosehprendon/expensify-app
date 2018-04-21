@@ -1,4 +1,5 @@
-const expensesReducerDefaultState = [];
+
+const expensesReducerDefaultState = [ ];
 
 const expensesReducer = (state = expensesReducerDefaultState, action) => {
     switch (action.type) {
@@ -25,6 +26,16 @@ const expensesReducer = (state = expensesReducerDefaultState, action) => {
             });
         case 'SET_EXPENSES':
             return action.expenses;
+        // case 'MODAL_OPEN':
+        //     return [
+        //         ...state,
+        //         action.confirmRemove
+        //     ];
+        // case 'MODAL_CLOSE':
+        //     return [
+        //         ...state,
+        //         action.confirmRemove
+        //     ];
         default:
             return state;
     }

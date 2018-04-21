@@ -42,17 +42,46 @@ export const startRemoveExpense = ({ id } = {}) => {
     };
 };
 
+// // MODAL OPEN
+
+// export const modalOpen = (confirmRemove) => ({
+//     type: 'MODAL_OPEN',
+//     confirmRemove
+// });
+
+// export const startModalOpen = (confirmRemove) => {
+//     return(dispatch) => {
+//         const confirmRemove = true;
+//         dispatch(modalOpen(confirmRemove))
+//     }
+// }
+
+
+// // MODAL CLOSE
+
+// export const modalClose = (confirmRemove) => ({
+//     type: 'MODAL_CLOSE',
+//     confirmRemove
+// });
+
+// export const startModalClose = (confirmRemove) => {
+//     return(dispatch) => {
+//         const confirmRemove = false;
+//         dispatch(modalClose(confirmRemove))
+//     }
+// }
+
+
 // EDIT_EXPENSE Action creator
 export const editExpense = (id, updates, selectedRemove) => ({
     type: 'EDIT_EXPENSE',
     id,
     updates,
-    selectedRemove
+
 });
 
 export const startEditExpense = (id, updates, selectedRemove) => {
     return (dispatch, getState) => {
-        selectedRemove = false;
         const uid = getState().auth.uid;
         return database.ref(`users/${uid}/expenses/${id}`).update(updates).then(() => {
             dispatch(editExpense(id, updates));
