@@ -8,7 +8,7 @@ import selectExpensesTotal from '../selectors/expenses-total';
 export const ExpensesSummary = ({ expenseCount, expensesTotal, expenseCountNoFilter }) => {
   const expenseWord = expenseCount === 1 ? 'expense' : 'expenses' ;
   const formattedExpensesTotal = numeral(expensesTotal / 100).format('$0,0.00');
-  const expenseCountNoFilterText = expenseCountNoFilter === 0 ? '' : expenseCountNoFilter + ' expenses are hidden due to filtering'
+  const expenseCountNoFilterText = expenseCountNoFilter === 0 ? '' : expenseCountNoFilter === 1 ? expenseCountNoFilter + ' expense is hidden, reset dates to view all' : expenseCountNoFilter + ' expenses are hidden, reset dates to view all'
   
   return (
     <div className="page-header">
