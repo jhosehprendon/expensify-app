@@ -5,14 +5,16 @@ import numeral from 'numeral';
 import selectExpenses from '../selectors/expenses';
 import selectExpensesTotal from '../selectors/expenses-total';
 
-export const ExpensesSummary = ({ expenseCount, expensesTotal }) => {
+export const ExpensesSummary = ({ expenseCount, expensesTotal, expenseCountNoFilter }) => {
   const expenseWord = expenseCount === 1 ? 'expense' : 'expenses' ;
   const formattedExpensesTotal = numeral(expensesTotal / 100).format('$0,0.00');
+  const expenseCountNoFilterText = expenseCountNoFilter === 0 ? '' : expenseCountNoFilter + ' expenses are hidden due to filtering'
   
   return (
     <div className="page-header">
       <div className="content-container"> 
         <h1 className="page-header__title">Viewing <span>{expenseCount}</span> {expenseWord} totalling <span>{formattedExpensesTotal}</span></h1>
+        <p>{expenseCountNoFilterText}</p>
         <div className="page-header__actions">
           <Link className="button" to="/create">Add Expense</Link>
         </div>
@@ -23,10 +25,10 @@ export const ExpensesSummary = ({ expenseCount, expensesTotal }) => {
 
 const mapStateToProps = (state) => {
   const visibleExpenses = selectExpenses(state.expenses, state.filters);
-
   return {
     expenseCount: visibleExpenses.length,
-    expensesTotal: selectExpensesTotal(visibleExpenses)
+    expensesTotal: selectExpensesTotal(visibleExpenses),
+    expenseCountNoFilter: state.expenses.length - visibleExpenses.length 
   };
 };
 
