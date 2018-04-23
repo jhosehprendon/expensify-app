@@ -1,6 +1,9 @@
 {
   "name": "expensify",
   "version": "1.0.0",
+  "engines": {
+    "node": "^9.11.0"
+  },
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -26,6 +29,7 @@
     "firebase": "4.2.0",
     "history": "4.7.2",
     "moment": "2.19.3",
+    "node": "^9.11.0",
     "node-sass": "4.7.2",
     "normalize.css": "7.0.0",
     "numeral": "2.0.6",
